@@ -353,4 +353,79 @@ window.addEventListener("load", () => {
   // attempt to auto-load first month of START_YEAR to give immediate feedback
   const month = (window.monthSelect && window.monthSelect.value) ? window.monthSelect.value : "01";
   loadCOGFor(VARIABLES[0], String(START_YEAR), month);
+
 });
+
+/* =========================
+   Satellite / Globe Animation
+   ========================= */
+
+const canvas = document.getElementById("globeCanvas");
+const ctx = canvas.getContext("2d");
+
+let w, h;
+function resize() {
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+}
+window.addEventListener("resize", resize);
+resize();
+
+// Globe parameters
+const center = { x: w / 2, y: h / 2 };
+const globeRadius = Math.min(w, h) * 0.22;
+
+// Satellite points
+const satellites = [];
+const SAT_COUNT = 80;
+
+for (let i = 0; i < SAT_COUNT; i++) {
+  satellites.push({
+    angle: Math.random() * Math.PI * 2,
+    radius: globeRadius + Math.random() * 120,
+    speed: 0.0005 + Math.random() * 0.001
+  });
+}
+
+function drawGlobe() {
+  ctx.beginPath();
+  ctx.arc(center.x, center.y, globeRadius, 0, Math.PI * 2);
+  ctx.strokeStyle = "rgba(0, 194, 199, 0.25)";
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+}
+
+function drawSatellites() {
+  satellites.forEach(s => {
+    s.angle += s.speed;
+
+    const x = center.x + Math.cos(s.angle) * s.radius;
+    const y = center.y + Math.sin(s.angle) * s.radius;
+
+    ctx.beginPath();
+    ctx.arc(x, y, 2, 0, Math.PI * 2);
+    ctx.fillStyle = "#00c2c7";
+    ctx.fill();
+
+    // Connection line
+    ctx.beginPath();
+    ctx.moveTo(center.x, center.y);
+    ctx.lineTo(x, y);
+    ctx.strokeStyle = "rgba(0, 194, 199, 0.08)";
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  });
+}
+
+function animate() {
+  ctx.clearRect(0, 0, w, h);
+  center.x = w / 2;
+  center.y = h / 2;
+
+  drawGlobe();
+  drawSatellites();
+
+  requestAnimationFrame(animate);
+}
+
+animate();
