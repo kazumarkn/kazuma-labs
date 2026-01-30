@@ -1,4 +1,4 @@
-# Kazuma Labs 🌍📊🎨
+# Kazuma Labs 🌍📊
 
 **Kazuma Labs** is a multidisciplinary digital lab delivering data-driven insights, earth observation solutions, and creative digital services. We integrate **data analytics**, **remote sensing**, **modeling**, and **multimedia production** to support research, policy, business, and digital transformation initiatives.
 
