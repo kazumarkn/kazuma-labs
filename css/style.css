@@ -30,10 +30,11 @@ body {
    ========================= */
 #globeCanvas {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: -1;
+  z-index: 0;
   pointer-events: none;
   background: radial-gradient(
     circle at center,
@@ -41,6 +42,13 @@ body {
     #0b1c2d 70%
   );
 }
+
+/* Ensure content sits above the globe */
+body {
+  position: relative;
+  z-index: 1;
+}
+
 
 /* =========================
    HEADER
@@ -220,3 +228,4 @@ footer {
     margin-bottom: 12px;
   }
 }
+
