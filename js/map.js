@@ -155,6 +155,9 @@ if (basemapSelect) {
 // =============================
 // 🌍 GLOBE + SATELLITE BACKGROUND
 // =============================
+// =============================
+// 🌍 REALISTIC EARTH-LIKE GLOBE
+// =============================
 (function globeBackground() {
   const canvas = document.getElementById("globeCanvas");
   if (!canvas) return;
@@ -169,24 +172,66 @@ if (basemapSelect) {
   window.addEventListener("resize", resize);
   resize();
 
-  const satellites = Array.from({ length: 90 }, () => ({
+  const R = Math.min(w, h) * 0.22;
+  let rotation = 0;
+
+  // Satellites
+  const satellites = Array.from({ length: 40 }, () => ({
     angle: Math.random() * Math.PI * 2,
-    radius: 160 + Math.random() * 120,
-    speed: 0.0006 + Math.random() * 0.001
+    radius: R + 20 + Math.random() * 40,
+    speed: 0.0006 + Math.random() * 0.0008
   }));
 
-  function draw() {
-    ctx.clearRect(0, 0, w, h);
-    const cx = w / 2;
-    const cy = h / 2;
+  function drawEarth(cx, cy) {
+    // 🌍 Sphere shading
+    const grad = ctx.createRadialGradient(
+      cx - R * 0.4, cy - R * 0.4, R * 0.2,
+      cx, cy, R
+    );
+    grad.addColorStop(0, "#1fd3d6");
+    grad.addColorStop(0.4, "#0a6c7a");
+    grad.addColorStop(1, "#042a3a");
 
-    // globe ring
     ctx.beginPath();
-    ctx.arc(cx, cy, 140, 0, Math.PI * 2);
-    ctx.strokeStyle = "rgba(0,194,199,.25)";
+    ctx.arc(cx, cy, R, 0, Math.PI * 2);
+    ctx.fillStyle = grad;
+    ctx.fill();
+
+    // 🌐 Latitude lines
+    ctx.strokeStyle = "rgba(255,255,255,0.08)";
+    for (let i = -60; i <= 60; i += 30) {
+      const y = cy + Math.sin((i * Math.PI) / 180) * R;
+      const r = Math.cos((i * Math.PI) / 180) * R;
+      ctx.beginPath();
+      ctx.ellipse(cx, y, r, r * 0.15, 0, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+
+    // 🌐 Longitude lines (rotating)
+    for (let i = 0; i < 12; i++) {
+      const a = (i / 12) * Math.PI * 2 + rotation;
+      ctx.beginPath();
+      ctx.ellipse(
+        cx,
+        cy,
+        R * Math.abs(Math.cos(a)),
+        R,
+        Math.sin(a),
+        0,
+        Math.PI * 2
+      );
+      ctx.stroke();
+    }
+
+    // 🌍 Edge glow
+    ctx.beginPath();
+    ctx.arc(cx, cy, R, 0, Math.PI * 2);
+    ctx.strokeStyle = "rgba(0,194,199,0.35)";
     ctx.lineWidth = 2;
     ctx.stroke();
+  }
 
+  function drawSatellites(cx, cy) {
     satellites.forEach(s => {
       s.angle += s.speed;
       const x = cx + Math.cos(s.angle) * s.radius;
@@ -200,13 +245,25 @@ if (basemapSelect) {
       ctx.beginPath();
       ctx.moveTo(cx, cy);
       ctx.lineTo(x, y);
-      ctx.strokeStyle = "rgba(0,194,199,.08)";
+      ctx.strokeStyle = "rgba(0,194,199,0.08)";
       ctx.stroke();
     });
-
-    requestAnimationFrame(draw);
   }
 
-  draw();
+  function animate() {
+    ctx.clearRect(0, 0, w, h);
+
+    const cx = w * 0.6;
+    const cy = h * 0.5;
+
+    drawEarth(cx, cy);
+    drawSatellites(cx, cy);
+
+    rotation += 0.002; // slow Earth rotation
+    requestAnimationFrame(animate);
+  }
+
+  animate();
 })();
+
 
