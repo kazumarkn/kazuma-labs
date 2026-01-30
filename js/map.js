@@ -69,15 +69,20 @@ function setLoading(isLoading, text = "Loading...") {
 // -----------------------------
 // MAP INIT (Leaflet)
 // -----------------------------
-const map = L.map("map", { center: [-2.5, 118], zoom: 5 });
+let map;
+
+window.addEventListener("DOMContentLoaded", () => {
+  map = L.map("map", { center: [-2.5, 118], zoom: 5 });
+
+  baseLayers.osm.addTo(map);
+});
+
 
 const baseLayers = {
   osm: L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 19 }),
   sat: L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", { maxZoom: 19 }),
   terrain: L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", { maxZoom: 17 })
 };
-
-baseLayers.osm.addTo(map);
 
 let currentLayer = null;
 let currentGeoraster = null;
@@ -204,3 +209,4 @@ if (basemapSelect) {
 
   draw();
 })();
+
