@@ -57,49 +57,7 @@
     </div>
   </section>
 
-  <!-- =========================
-       MAP SECTION (LEAFLET)
-       ========================= -->
-  <section id="map-section">
-    <h2 class="section-title">Spatial Analysis Map</h2>
-
-    <!-- UI PANEL (used by your JS) -->
-    <div id="panel" style="max-width:420px;margin:0 auto 16px;">
-      <label><strong>Variable</strong></label>
-      <select id="variableSelect"></select>
-
-      <label><strong>Year</strong></label>
-      <select id="yearSelect"></select>
-
-      <button id="loadBtn" class="btn" style="margin-top:12px;">Load</button>
-
-      <label style="display:block;margin-top:12px;">
-        <strong>Opacity</strong>
-      </label>
-      <input
-        type="range"
-        id="opacitySlider"
-        min="0"
-        max="1"
-        step="0.05"
-        value="0.75"
-      />
-
-      <label style="display:block;margin-top:12px;">
-        <strong>Basemap</strong>
-      </label>
-      <select id="basemapSelect">
-        <option value="osm">OpenStreetMap</option>
-        <option value="sat">Satellite</option>
-        <option value="terrain">Terrain</option>
-      </select>
-    </div>
-
-    <!-- REQUIRED MAP DIV -->
-    <div id="map"></div>
-  </section>
-
-  <!-- =========================
+   <!-- =========================
        SERVICES
        ========================= -->
   <section id="services">
