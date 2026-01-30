@@ -25,11 +25,6 @@
 <body>
 
   <!-- =========================
-       BACKGROUND GLOBE CANVAS
-       ========================= -->
-  <canvas id="globeCanvas"></canvas>
-
-  <!-- =========================
        HEADER
        ========================= -->
 <header>
@@ -71,21 +66,45 @@
 </header>
 
 
-  <!-- =========================
-       HERO
-       ========================= -->
-  <section class="hero">
-    <div class="hero-content">
-      <h2>Data, Earth Observation, and Digital Creativity</h2>
-      <p>
-        Kazuma Labs integrates data analytics, remote sensing,
-        spatial modeling, and digital media to deliver
-        research-grade and scalable solutions.
-      </p>
-      <a href="#map-section" class="btn">View Spatial Map</a>
-      <a href="#services" class="btn secondary">Explore Services</a>
+<!-- =========================
+     HERO (EARTH FROM SPACE)
+     ========================= -->
+<section class="hero hero-video">
+
+  <!-- Background Video -->
+  <video
+    class="hero-bg-video"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+  >
+    <source
+      src="https://res.cloudinary.com/drf79uolc/video/upload/earth-from-space.3840x2160_fwwccc.mp4"
+      type="video/mp4"
+    />
+  </video>
+
+  <!-- Overlay -->
+  <div class="hero-overlay"></div>
+
+  <!-- Hero Content -->
+  <div class="hero-content">
+    <h2>Data, Earth Observation,<br>and Digital Creativity</h2>
+    <p>
+      Kazuma Labs integrates data analytics, remote sensing,
+      spatial modeling, and digital media to deliver
+      research-grade and scalable solutions.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#services" class="btn">Explore Services</a>
+      <a href="#about" class="btn secondary">About Kazuma Labs</a>
     </div>
-  </section>
+  </div>
+
+</section>
 
    <!-- =========================
        SERVICES
