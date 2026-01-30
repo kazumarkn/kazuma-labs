@@ -153,9 +153,6 @@ if (basemapSelect) {
 }
 
 // =============================
-// 🌍 GLOBE + SATELLITE BACKGROUND
-// =============================
-// =============================
 // 🌍 REALISTIC EARTH-LIKE GLOBE
 // =============================
 (function globeBackground() {
@@ -265,5 +262,4 @@ if (basemapSelect) {
 
   animate();
 })();
-
 
