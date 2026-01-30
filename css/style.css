@@ -106,18 +106,6 @@ section {
   text-align: center;
 }
 
-/* Globe Background */
-#globeCanvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -1;
-  background: radial-gradient(circle at center, #10273f 0%, #0b1c2d 70%);
-}
-
-
 /* SERVICES */
 .services {
   display: grid;
@@ -193,4 +181,5 @@ footer {
     margin-bottom: 12px;
   }
 }
+
 
