@@ -35,4 +35,229 @@
     }
 
     header {
-      padding: 24px 64px
+      padding: 24px 64px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    nav a {
+      margin-left: 24px;
+      color: var(--light);
+      text-decoration: none;
+      font-weight: 500;
+      opacity: 0.9;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    .hero {
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      padding: 0 64px;
+    }
+
+    .hero-content {
+      max-width: 720px;
+    }
+
+    .hero h2 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      background: var(--accent);
+      color: #001316;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      margin-right: 16px;
+    }
+
+    .btn.secondary {
+      background: transparent;
+      color: var(--light);
+      border: 1px solid var(--accent);
+    }
+
+    section {
+      padding: 80px 64px;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: #10273f;
+      padding: 28px;
+      border-radius: 12px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 30px rgba(0, 194, 199, 0.15);
+    }
+
+    .card h3 {
+      margin-bottom: 12px;
+      color: var(--accent);
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .about {
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    footer {
+      background: #081522;
+      padding: 40px 64px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 24px;
+        flex-direction: column;
+      }
+
+      nav {
+        margin-top: 12px;
+      }
+
+      .hero {
+        padding: 80px 24px;
+      }
+
+      section {
+        padding: 64px 24px;
+      }
+
+      .hero h2 {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <h1>Kazuma Labs</h1>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Data, Earth Observation, and Digital Creativity</h2>
+      <p>
+        Kazuma Labs is a multidisciplinary digital lab delivering data analytics,
+        remote sensing assessment, modeling, and creative media solutions for
+        research, policy, and digital transformation.
+      </p>
+      <a href="#contact" class="btn">Get a Consultation</a>
+      <a href="#services" class="btn secondary">Explore Services</a>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <h2 class="section-title">Our Services</h2>
+    <div class="services">
+      <div class="card">
+        <h3>Data Analytics</h3>
+        <p>Statistical analysis, machine learning, time series forecasting, and data-driven decision support.</p>
+      </div>
+      <div class="card">
+        <h3>Remote Sensing Assessment</h3>
+        <p>Satellite imagery analysis, GIS-based mapping, land use assessment, and climate applications.</p>
+      </div>
+      <div class="card">
+        <h3>Modeling & Simulation</h3>
+        <p>Environmental, climate, and predictive modeling for scenario analysis and planning.</p>
+      </div>
+      <div class="card">
+        <h3>Graphic Design</h3>
+        <p>Branding, scientific infographics, publication visuals, and digital design assets.</p>
+      </div>
+      <div class="card">
+        <h3>Videography & SNS Management</h3>
+        <p>Promotional videos, educational content, and social media strategy and management.</p>
+      </div>
+      <div class="card">
+        <h3>Website Development</h3>
+        <p>Professional websites, research portals, dashboards, and responsive web solutions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <h2 class="section-title">About Kazuma Labs</h2>
+    <p class="about">
+      Kazuma Labs integrates data science, earth observation, and creative media
+      to produce impactful digital solutions. We work across research,
+      environmental studies, digital branding, and technology-driven innovation
+      with a global and scalable perspective.
+    </p>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2 class="section-title">Contact</h2>
+    <p class="about">
+      Interested in collaboration or consultation?<br />
+      Reach us through GitHub or visit this page regularly for updates.
+    </p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2026 Kazuma Labs. All rights reserved.
+  </footer>
+
+</body>
+</html>
