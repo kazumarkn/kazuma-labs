@@ -45,7 +45,7 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 0;
+  z-index: -1;               /* ⬅️ KEY FIX */
   pointer-events: none;
   background: radial-gradient(
     circle at center,
@@ -53,6 +53,7 @@ body {
     #0b1c2d 70%
   );
 }
+
 
 /* Ensure content sits above the globe */
 body {
@@ -239,5 +240,6 @@ footer {
     margin-bottom: 12px;
   }
 }
+
 
 
