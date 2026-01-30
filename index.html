@@ -3,255 +3,164 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Kazuma Labs | Data, Remote Sensing & Digital Creative Lab</title>
 
   <!-- SEO -->
-  <meta name="description" content="Kazuma Labs provides data analytics, remote sensing, modeling, and digital creative solutions." />
+  <meta name="description" content="Kazuma Labs provides data analytics, remote sensing, spatial modeling, and digital creative solutions." />
 
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    :root {
-      --primary: #0b1c2d;
-      --accent: #00c2c7;
-      --light: #f8fafc;
-      --muted: #94a3b8;
-    }
+  <!-- Leaflet CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Inter", sans-serif;
-    }
-
-    body {
-      background: var(--primary);
-      color: var(--light);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* 🌍 CANVAS BACKGROUND */
-    #globeCanvas {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      background: radial-gradient(circle at center, #10273f 0%, #0b1c2d 70%);
-    }
-
-    header {
-      padding: 24px 64px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    nav a {
-      margin-left: 24px;
-      color: var(--light);
-      text-decoration: none;
-    }
-
-    nav a:hover {
-      color: var(--accent);
-    }
-
-    .hero {
-      min-height: 85vh;
-      display: flex;
-      align-items: center;
-      padding: 0 64px;
-    }
-
-    .hero-content {
-      max-width: 720px;
-    }
-
-    .hero h2 {
-      font-size: 3rem;
-      margin-bottom: 16px;
-    }
-
-    .hero p {
-      color: var(--muted);
-      margin-bottom: 32px;
-    }
-
-    .btn {
-      padding: 14px 28px;
-      background: var(--accent);
-      color: #001316;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 600;
-      margin-right: 16px;
-    }
-
-    .btn.secondary {
-      background: transparent;
-      color: var(--light);
-      border: 1px solid var(--accent);
-    }
-
-    section {
-      padding: 80px 64px;
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 40px;
-    }
-
-    .services {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 24px;
-    }
-
-    .card {
-      background: #10273f;
-      padding: 28px;
-      border-radius: 12px;
-    }
-
-    .card h3 {
-      color: var(--accent);
-      margin-bottom: 12px;
-    }
-
-    .card p {
-      color: var(--muted);
-    }
-
-    footer {
-      background: #081522;
-      padding: 40px;
-      text-align: center;
-      color: var(--muted);
-    }
-
-    @media (max-width: 768px) {
-      header, section, .hero {
-        padding: 24px;
-      }
-      .hero h2 {
-        font-size: 2.2rem;
-      }
-    }
-  </style>
+  <!-- YOUR CSS -->
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
 
-  <!-- 🌍 ANIMATED GLOBE -->
+  <!-- =========================
+       BACKGROUND GLOBE CANVAS
+       ========================= -->
   <canvas id="globeCanvas"></canvas>
 
+  <!-- =========================
+       HEADER
+       ========================= -->
   <header>
     <h1>Kazuma Labs</h1>
     <nav>
       <a href="#services">Services</a>
+      <a href="#map-section">Map</a>
       <a href="#about">About</a>
-      <a href="#contact">Contact</a>
     </nav>
   </header>
 
+  <!-- =========================
+       HERO
+       ========================= -->
   <section class="hero">
     <div class="hero-content">
       <h2>Data, Earth Observation, and Digital Creativity</h2>
       <p>
-        We deliver data analytics, remote sensing assessment, modeling,
-        and creative digital solutions with a global perspective.
+        Kazuma Labs integrates data analytics, remote sensing,
+        spatial modeling, and digital media to deliver
+        research-grade and scalable solutions.
       </p>
-      <a href="#contact" class="btn">Get a Consultation</a>
+      <a href="#map-section" class="btn">View Spatial Map</a>
       <a href="#services" class="btn secondary">Explore Services</a>
     </div>
   </section>
 
+  <!-- =========================
+       MAP SECTION (LEAFLET)
+       ========================= -->
+  <section id="map-section">
+    <h2 class="section-title">Spatial Analysis Map</h2>
+
+    <!-- UI PANEL (used by your JS) -->
+    <div id="panel" style="max-width:420px;margin:0 auto 16px;">
+      <label><strong>Variable</strong></label>
+      <select id="variableSelect"></select>
+
+      <label><strong>Year</strong></label>
+      <select id="yearSelect"></select>
+
+      <button id="loadBtn" class="btn" style="margin-top:12px;">Load</button>
+
+      <label style="display:block;margin-top:12px;">
+        <strong>Opacity</strong>
+      </label>
+      <input
+        type="range"
+        id="opacitySlider"
+        min="0"
+        max="1"
+        step="0.05"
+        value="0.75"
+      />
+
+      <label style="display:block;margin-top:12px;">
+        <strong>Basemap</strong>
+      </label>
+      <select id="basemapSelect">
+        <option value="osm">OpenStreetMap</option>
+        <option value="sat">Satellite</option>
+        <option value="terrain">Terrain</option>
+      </select>
+    </div>
+
+    <!-- REQUIRED MAP DIV -->
+    <div id="map"></div>
+  </section>
+
+  <!-- =========================
+       SERVICES
+       ========================= -->
   <section id="services">
     <h2 class="section-title">Our Services</h2>
     <div class="services">
-      <div class="card"><h3>Data Analytics</h3><p>Machine learning and data-driven insights.</p></div>
-      <div class="card"><h3>Remote Sensing</h3><p>Satellite imagery and GIS analysis.</p></div>
-      <div class="card"><h3>Modeling</h3><p>Climate and predictive simulations.</p></div>
-      <div class="card"><h3>Design</h3><p>Scientific and digital visual design.</p></div>
-      <div class="card"><h3>Videography</h3><p>Educational and promotional media.</p></div>
-      <div class="card"><h3>Web Development</h3><p>Modern responsive websites.</p></div>
+      <div class="card">
+        <h3>Data Analytics</h3>
+        <p>Machine learning, time series, and decision-support analytics.</p>
+      </div>
+      <div class="card">
+        <h3>Remote Sensing</h3>
+        <p>Satellite imagery processing and GIS-based spatial analysis.</p>
+      </div>
+      <div class="card">
+        <h3>Modeling & Simulation</h3>
+        <p>Climate, environmental, and predictive modeling.</p>
+      </div>
+      <div class="card">
+        <h3>Graphic Design</h3>
+        <p>Scientific infographics and digital branding.</p>
+      </div>
+      <div class="card">
+        <h3>Videography & SNS</h3>
+        <p>Educational and promotional digital media.</p>
+      </div>
+      <div class="card">
+        <h3>Web Development</h3>
+        <p>Research portals, dashboards, and responsive websites.</p>
+      </div>
     </div>
   </section>
 
+  <!-- =========================
+       ABOUT
+       ========================= -->
   <section id="about">
     <h2 class="section-title">About Kazuma Labs</h2>
-    <p style="max-width:900px;margin:auto;text-align:center;color:var(--muted)">
-      Kazuma Labs integrates science, earth observation, and digital creativity
-      to deliver impactful solutions for research and innovation.
+    <p class="about">
+      Kazuma Labs bridges science, earth observation,
+      and digital creativity to deliver impactful,
+      research-grade solutions with a global perspective.
     </p>
   </section>
 
+  <!-- =========================
+       FOOTER
+       ========================= -->
   <footer>
     © 2026 Kazuma Labs. All rights reserved.
   </footer>
 
-  <!-- 🌌 GLOBE ANIMATION SCRIPT -->
-  <script>
-    const canvas = document.getElementById("globeCanvas");
-    const ctx = canvas.getContext("2d");
+  <!-- =========================
+       JS LIBRARIES
+       ========================= -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/geotiff/dist/geotiff.browser.min.js"></script>
+  <script src="https://unpkg.com/georaster/dist/georaster.browser.min.js"></script>
+  <script src="https://unpkg.com/georaster-layer-for-leaflet/dist/georaster-layer-for-leaflet.min.js"></script>
 
-    function resize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    window.addEventListener("resize", resize);
-    resize();
-
-    const satellites = [];
-    const SAT_COUNT = 90;
-
-    for (let i = 0; i < SAT_COUNT; i++) {
-      satellites.push({
-        angle: Math.random() * Math.PI * 2,
-        radius: 160 + Math.random() * 120,
-        speed: 0.0008 + Math.random() * 0.001
-      });
-    }
-
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      const cx = canvas.width / 2;
-      const cy = canvas.height / 2;
-
-      // Globe
-      ctx.beginPath();
-      ctx.arc(cx, cy, 140, 0, Math.PI * 2);
-      ctx.strokeStyle = "rgba(0,194,199,0.25)";
-      ctx.lineWidth = 2;
-      ctx.stroke();
-
-      satellites.forEach(s => {
-        s.angle += s.speed;
-        const x = cx + Math.cos(s.angle) * s.radius;
-        const y = cy + Math.sin(s.angle) * s.radius;
-
-        ctx.beginPath();
-        ctx.arc(x, y, 2, 0, Math.PI * 2);
-        ctx.fillStyle = "#00c2c7";
-        ctx.fill();
-
-        ctx.beginPath();
-        ctx.moveTo(cx, cy);
-        ctx.lineTo(x, y);
-        ctx.strokeStyle = "rgba(0,194,199,0.08)";
-        ctx.stroke();
-      });
-
-      requestAnimationFrame(animate);
-    }
-
-    animate();
-  </script>
+  <!-- YOUR MAIN JS (MAP + GLOBE) -->
+  <script src="js/main.js"></script>
 
 </body>
 </html>
