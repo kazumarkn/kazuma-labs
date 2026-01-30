@@ -5,7 +5,9 @@
   --muted: #94a3b8;
 }
 
-/* RESET */
+/* =========================
+   RESET
+   ========================= */
 * {
   margin: 0;
   padding: 0;
@@ -13,14 +15,36 @@
   font-family: "Inter", sans-serif;
 }
 
-/* GLOBAL */
+/* =========================
+   GLOBAL
+   ========================= */
 body {
   background: var(--primary);
   color: var(--light);
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
-/* HEADER */
+/* =========================
+   ANIMATED GLOBE BACKGROUND
+   ========================= */
+#globeCanvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at center,
+    #10273f 0%,
+    #0b1c2d 70%
+  );
+}
+
+/* =========================
+   HEADER
+   ========================= */
 header {
   padding: 24px 64px;
   display: flex;
@@ -47,7 +71,9 @@ nav a:hover {
   color: var(--accent);
 }
 
-/* HERO */
+/* =========================
+   HERO
+   ========================= */
 .hero {
   min-height: 85vh;
   display: flex;
@@ -71,7 +97,9 @@ nav a:hover {
   margin-bottom: 32px;
 }
 
-/* BUTTONS */
+/* =========================
+   BUTTONS
+   ========================= */
 .btn {
   display: inline-block;
   padding: 14px 28px;
@@ -95,7 +123,9 @@ nav a:hover {
   border: 1px solid var(--accent);
 }
 
-/* SECTIONS */
+/* =========================
+   SECTIONS
+   ========================= */
 section {
   padding: 80px 64px;
 }
@@ -106,7 +136,9 @@ section {
   text-align: center;
 }
 
-/* SERVICES */
+/* =========================
+   SERVICES
+   ========================= */
 .services {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -114,9 +146,10 @@ section {
 }
 
 .card {
-  background: #10273f;
+  background: rgba(16, 39, 63, 0.92);
   padding: 28px;
   border-radius: 12px;
+  backdrop-filter: blur(2px);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -135,7 +168,9 @@ section {
   font-size: 0.95rem;
 }
 
-/* ABOUT & CONTACT */
+/* =========================
+   ABOUT & CONTACT
+   ========================= */
 .about {
   max-width: 900px;
   margin: auto;
@@ -144,7 +179,9 @@ section {
   font-size: 1.05rem;
 }
 
-/* FOOTER */
+/* =========================
+   FOOTER
+   ========================= */
 footer {
   background: #081522;
   padding: 40px 64px;
@@ -153,7 +190,9 @@ footer {
   color: var(--muted);
 }
 
-/* RESPONSIVE */
+/* =========================
+   RESPONSIVE
+   ========================= */
 @media (max-width: 768px) {
   header {
     padding: 24px;
@@ -181,5 +220,3 @@ footer {
     margin-bottom: 12px;
   }
 }
-
-
