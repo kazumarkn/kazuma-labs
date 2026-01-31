@@ -90,27 +90,31 @@ nav a:hover {
   background: #0b1c2d;
 }
 
-/* Earth-from-space video */
+/* HERO STACKING CONTEXT */
+.hero-video {
+  position: relative;
+  z-index: 0;
+}
+
+/* Earth video */
 .hero-bg-video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-
-  /* 🔑 GUARANTEES FULL GLOBE VISIBILITY */
   object-fit: contain;
   object-position: center center;
 
-  z-index: -2;
+  z-index: 0; /* 🔑 FIX */
   background: #0b1c2d;
-  filter: brightness(0.6) contrast(1.1) saturate(1.05);
+  filter: brightness(0.85) contrast(1.05) saturate(1.1);
 }
 
-/* Overlay for readability */
+/* Overlay */
 .hero-overlay {
   position: absolute;
   inset: 0;
-  z-index: -1;
+  z-index: 1; /* 🔑 FIX */
   background:
     radial-gradient(circle at 65% 50%, rgba(0,194,199,0.08), transparent 65%),
     linear-gradient(
@@ -119,6 +123,13 @@ nav a:hover {
       rgba(11,28,45,0.65)
     );
 }
+
+/* Content */
+.hero-content {
+  position: relative;
+  z-index: 2; /* 🔑 FIX */
+}
+
 
 /* Hero content */
 .hero-content {
@@ -270,4 +281,5 @@ footer {
     margin-bottom: 12px;
   }
 }
+
 
