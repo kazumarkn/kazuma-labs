@@ -1,90 +1,123 @@
 /* =========================
-   GLOBAL BASE COLOR
+   GLOBAL RESET & VARIABLES
    ========================= */
 :root {
-  --primary: #030E19; /* space-black */
+  --primary: #030E19; /* space black */
   --accent: #00c2c7;
   --light: #f8fafc;
   --muted: #94a3b8;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
 body {
   background: var(--primary);
   color: var(--light);
+  line-height: 1.6;
+  overflow-x: hidden;
 }
 
 /* =========================
-   HERO VIDEO (SEAMLESS)
+   HEADER
    ========================= */
-.hero {
-  padding: 0 !important;
+header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  padding: 24px 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 20;
 }
 
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  width: 42px;
+  height: 42px;
+  color: #fff;
+}
+
+.brand-text {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+nav a {
+  margin-left: 24px;
+  color: var(--light);
+  text-decoration: none;
+  opacity: 0.9;
+}
+
+nav a:hover {
+  color: var(--accent);
+}
+
+/* =========================
+   HERO (VIDEO – SEAMLESS)
+   ========================= */
 .hero-video {
   position: relative;
   min-height: 100vh;
   display: flex;
   align-items: center;
   overflow: hidden;
-
-  /* 🔑 EXACT MATCH with video blacks */
-  background-color: #030E19;
+  background-color: var(--primary);
 }
 
-/* 🎥 Earth video */
+/* Background video */
 .hero-bg-video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-
-  /* KEEP full globe */
   object-fit: contain;
-  object-position: center center;
-
+  object-position: center;
   z-index: 0;
-
-  /* Slight enhancement only */
-  filter:
-    brightness(0.95)
-    contrast(1.05)
-    saturate(1.1);
+  filter: brightness(0.95) contrast(1.05) saturate(1.1);
 }
 
-/* 🌌 EDGE FEATHER (THIS FIXES THE RECTANGLE) */
+/* Edge feather to remove rectangle */
 .hero-video::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
-
   background:
     radial-gradient(
       ellipse at center,
       rgba(3,14,25,0) 55%,
-      rgba(3,14,25,0.4) 72%,
-      rgba(3,14,25,0.85) 100%
+      rgba(3,14,25,0.5) 75%,
+      rgba(3,14,25,1) 100%
     );
 }
 
-/* TEXT OVERLAY */
+/* Dark readability overlay */
 .hero-overlay {
   position: absolute;
   inset: 0;
   z-index: 2;
-
   background:
     linear-gradient(
       to right,
-      rgba(3,14,25,0.25),
-      rgba(3,14,25,0.75)
+      rgba(3,14,25,0.35),
+      rgba(3,14,25,0.85)
     );
 }
 
-/* =========================
-   HERO CONTENT
-   ========================= */
+/* Hero content */
 .hero-content {
   position: relative;
   z-index: 3;
@@ -95,6 +128,7 @@ body {
 .hero h2 {
   font-size: 3.2rem;
   font-weight: 700;
+  margin-bottom: 16px;
 }
 
 .hero p {
@@ -102,12 +136,90 @@ body {
   margin-bottom: 32px;
 }
 
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 14px 28px;
+  background: var(--accent);
+  color: #001316;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  margin-right: 12px;
+}
+
+.btn.secondary {
+  background: transparent;
+  color: var(--light);
+  border: 1px solid var(--accent);
+}
+
+/* =========================
+   SECTIONS (RESET FLOW)
+   ========================= */
+section {
+  position: relative;
+  background: var(--primary);
+  padding: 80px 64px;
+}
+
+/* =========================
+   SERVICES
+   ========================= */
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.card {
+  background: rgba(16, 39, 63, 0.92);
+  padding: 28px;
+  border-radius: 12px;
+}
+
+.card h3 {
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.card p {
+  color: var(--muted);
+}
+
+/* =========================
+   ABOUT
+   ========================= */
+.about {
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+  color: var(--muted);
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+footer {
+  background: #020b14;
+  padding: 40px;
+  text-align: center;
+  color: var(--muted);
+}
+
 /* =========================
    RESPONSIVE
    ========================= */
 @media (max-width: 768px) {
-  .hero-video {
-    min-height: 90vh;
+  header {
+    padding: 24px;
+    flex-direction: column;
   }
 
   .hero-content {
@@ -116,5 +228,9 @@ body {
 
   .hero h2 {
     font-size: 2.2rem;
+  }
+
+  section {
+    padding: 64px 24px;
   }
 }
