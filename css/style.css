@@ -305,7 +305,7 @@ footer {
 }
 
 /* =========================
-   CONTACT SECTION
+   CONTACT SECTION (ON-BRAND)
    ========================= */
 #contact {
   background-color: var(--primary);
@@ -326,46 +326,42 @@ footer {
   flex-wrap: wrap;
 }
 
-/* Contact card base */
+/* Contact card (shared style) */
 .contact-card {
   display: inline-flex;
   align-items: center;
   gap: 14px;
-  padding: 18px 28px;
+  padding: 18px 30px;
   border-radius: 12px;
   background: rgba(16, 39, 63, 0.9);
+  color: var(--accent);
   text-decoration: none;
   font-weight: 600;
+
   transition:
     transform 0.25s ease,
-    box-shadow 0.25s ease;
+    box-shadow 0.25s ease,
+    background 0.25s ease;
 }
 
 /* Icon */
 .contact-card svg {
   width: 22px;
   height: 22px;
-  flex-shrink: 0;
+  color: var(--accent);
 }
 
-/* WhatsApp */
-.contact-card.whatsapp {
-  color: #25D366;
-}
-
-.contact-card.whatsapp:hover {
-  box-shadow: 0 0 24px rgba(37, 211, 102, 0.35);
+/* Hover = same glow as buttons */
+.contact-card:hover {
   transform: translateY(-2px);
+  background: rgba(16, 39, 63, 1);
+  box-shadow: 0 0 26px rgba(0, 194, 199, 0.45);
 }
 
-/* Email (Gmail-style red) */
-.contact-card.email {
-  color: #EA4335;
-}
-
-.contact-card.email:hover {
-  box-shadow: 0 0 24px rgba(234, 67, 53, 0.35);
-  transform: translateY(-2px);
+/* Click (subtle press) */
+.contact-card:active {
+  transform: translateY(0);
+  box-shadow: 0 0 18px rgba(0, 194, 199, 0.6);
 }
 
 /* Mobile */
@@ -404,6 +400,7 @@ footer {
     letter-spacing: 0.18em;
   }
 }
+
 
 
 
