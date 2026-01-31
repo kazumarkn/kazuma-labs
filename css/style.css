@@ -109,6 +109,22 @@ nav a:hover {
     );
 }
 
+.hero-video::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+
+  /* 🎯 Feather the video edges */
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(0,0,0,0) 55%,
+      rgba(2,11,20,0.35) 70%,
+      rgba(2,11,20,0.75) 100%
+    );
+}
 
 /* Earth video */
 .hero-bg-video {
@@ -134,15 +150,15 @@ nav a:hover {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: 2;
   background:
-    radial-gradient(circle at 65% 50%, rgba(0,194,199,0.06), transparent 65%),
     linear-gradient(
       to right,
-      rgba(11,28,45,0.35),
-      rgba(11,28,45,0.75)
+      rgba(2,11,20,0.25),
+      rgba(2,11,20,0.65)
     );
 }
+
 
 
 /* Content */
@@ -302,6 +318,7 @@ footer {
     margin-bottom: 12px;
   }
 }
+
 
 
 
