@@ -60,6 +60,7 @@ header {
   justify-content: space-between;
   align-items: center;
   z-index: 10;
+  backdrop-filter: blur(2px);
 }
 
 nav a {
@@ -319,6 +320,7 @@ footer {
     margin-bottom: 12px;
   }
 }
+
 
 
 
