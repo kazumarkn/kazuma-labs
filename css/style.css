@@ -305,31 +305,54 @@ footer {
 }
 
 /* =========================
-   WHATSAPP CONTACT (FOOTER)
+   CONTACT SECTION
    ========================= */
-.contact-whatsapp {
-  margin-bottom: 20px;
+#contact {
+  background-color: var(--primary);
+  text-align: center;
 }
 
-.contact-whatsapp a {
+.contact-container {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.contact-intro {
+  color: var(--muted);
+  font-size: 1rem;
+  margin-bottom: 32px;
+}
+
+/* Contact row */
+.contact-item {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 14px;
+  padding: 18px 28px;
+  border-radius: 10px;
+  background: rgba(16, 39, 63, 0.85);
+}
+
+/* Label */
+.contact-label {
+  font-weight: 600;
+  color: var(--light);
+}
+
+/* WhatsApp link */
+.contact-link {
   color: var(--accent);
+  font-weight: 600;
   text-decoration: none;
-  font-weight: 500;
-  font-size: 0.95rem;
   transition: color 0.25s ease, text-shadow 0.25s ease;
 }
 
-.contact-whatsapp a:hover {
+/* Hover glow (subtle & professional) */
+.contact-link:hover {
   color: #00e0e6;
-  text-shadow: 0 0 12px rgba(0, 194, 199, 0.6);
+  text-shadow: 0 0 10px rgba(0, 194, 199, 0.55);
 }
 
-.wa-icon {
-  font-size: 1.1rem;
-}
 
 /* =========================
    RESPONSIVE
@@ -358,4 +381,5 @@ footer {
     letter-spacing: 0.18em;
   }
 }
+
 
