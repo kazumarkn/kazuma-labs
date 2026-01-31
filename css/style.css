@@ -1,9 +1,10 @@
 :root {
-  --primary: #0b1c2d;
+  --primary: #030E19;   /* ⬅️ NEW space-black base */
   --accent: #00c2c7;
   --light: #f8fafc;
   --muted: #94a3b8;
 }
+
 
 /* =========================
    RESET
@@ -98,14 +99,14 @@ nav a:hover {
   align-items: center;
   overflow: hidden;
 
-  /* 🌌 Space background matching video */
+  /* 🌌 Fully aligned with site background */
   background:
     radial-gradient(
       circle at 60% 50%,
       #0e2f52 0%,
-      #081f36 40%,
-      #04111e 70%,
-      #020b14 100%
+      #071f34 35%,
+      #030E19 70%,
+      #030E19 100%
     );
 }
 
@@ -318,6 +319,7 @@ footer {
     margin-bottom: 12px;
   }
 }
+
 
 
 
