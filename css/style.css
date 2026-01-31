@@ -305,6 +305,33 @@ footer {
 }
 
 /* =========================
+   WHATSAPP CONTACT (FOOTER)
+   ========================= */
+.contact-whatsapp {
+  margin-bottom: 20px;
+}
+
+.contact-whatsapp a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.25s ease, text-shadow 0.25s ease;
+}
+
+.contact-whatsapp a:hover {
+  color: #00e0e6;
+  text-shadow: 0 0 12px rgba(0, 194, 199, 0.6);
+}
+
+.wa-icon {
+  font-size: 1.1rem;
+}
+
+/* =========================
    RESPONSIVE
    ========================= */
 @media (max-width: 768px) {
@@ -331,3 +358,4 @@ footer {
     letter-spacing: 0.18em;
   }
 }
+
