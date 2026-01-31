@@ -161,6 +161,35 @@ nav a:hover {
   );
 }
 
+
+/* =========================
+   LEFT-SIDE VIDEO BLEND FIX
+   ========================= */
+.hero-video::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+
+  background:
+    /* LEFT feather (matches video black) */
+    linear-gradient(
+      to right,
+      #030E19 0%,
+      rgba(3,14,25,0.85) 12%,
+      rgba(3,14,25,0.45) 22%,
+      rgba(3,14,25,0.15) 35%,
+      rgba(3,14,25,0.0) 50%
+    ),
+    /* bottom fade stays intact */
+    linear-gradient(
+      to bottom,
+      rgba(3,14,25,0),
+      rgba(3,14,25,1)
+    );
+}
+
 /* Buttons */
 .btn {
   display: inline-block;
@@ -264,4 +293,5 @@ footer {
     padding: 64px 24px;
   }
 }
+
 
