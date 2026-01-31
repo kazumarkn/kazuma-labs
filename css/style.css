@@ -2,7 +2,7 @@
    GLOBAL RESET & VARIABLES
    ========================= */
 :root {
-  --primary: #030E19;
+  --primary: #030E19; /* space black */
   --accent: #00c2c7;
   --light: #f8fafc;
   --muted: #94a3b8;
@@ -36,39 +36,54 @@ header {
   z-index: 20;
 }
 
+/* Brand container */
 .brand {
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
+/* Logo */
 .logo {
   width: 42px;
   height: 42px;
   color: #fff;
 }
 
+/* Brand text stack */
+.brand-text-group {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
 .brand-text {
   font-size: 1.4rem;
   font-weight: 700;
+  letter-spacing: 0.4px;
 }
 
+/* ✅ SLOGAN */
+.brand-tagline {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-top: 4px;
+}
+
+/* Navigation */
 nav a {
   margin-left: 24px;
   color: var(--light);
   text-decoration: none;
   opacity: 0.9;
+  font-weight: 500;
 }
 
 nav a:hover {
   color: var(--accent);
-}
-
-.hero-tagline {
-  margin-top: 16px;
-  font-size: 0.95rem;
-  letter-spacing: 0.25em;
-  opacity: 0.7;
 }
 
 /* =========================
@@ -252,6 +267,7 @@ footer {
   header {
     padding: 24px;
     flex-direction: column;
+    gap: 12px;
   }
 
   .hero-content {
@@ -265,5 +281,9 @@ footer {
   section {
     padding: 64px 24px;
   }
-}
 
+  .brand-tagline {
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+  }
+}
