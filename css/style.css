@@ -64,6 +64,13 @@ nav a:hover {
   color: var(--accent);
 }
 
+.hero-tagline {
+  margin-top: 16px;
+  font-size: 0.95rem;
+  letter-spacing: 0.25em;
+  opacity: 0.7;
+}
+
 /* =========================
    HERO (VIDEO)
    ========================= */
@@ -259,3 +266,4 @@ footer {
     padding: 64px 24px;
   }
 }
+
