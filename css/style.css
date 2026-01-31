@@ -98,15 +98,17 @@ nav a:hover {
   align-items: center;
   overflow: hidden;
 
-  /* 🔑 Space-color base */
+  /* 🌌 Space background matching video */
   background:
     radial-gradient(
-      circle at 70% 50%,
-      #0b2a4a 0%,
-      #071b2e 45%,
+      circle at 60% 50%,
+      #0e2f52 0%,
+      #081f36 40%,
+      #04111e 70%,
       #020b14 100%
     );
 }
+
 
 /* Earth video */
 .hero-bg-video {
@@ -120,11 +122,13 @@ nav a:hover {
 
   z-index: 0;
 
-  /* 🔑 Slight glow + blend */
-  filter: brightness(0.9) contrast(1.05) saturate(1.1)
-          drop-shadow(0 0 80px rgba(30,120,255,0.25));
+  /* 🌍 Blend edges into space */
+  filter:
+    brightness(0.92)
+    contrast(1.05)
+    saturate(1.1)
+    drop-shadow(0 0 120px rgba(40,140,255,0.35));
 }
-
 
 /* Overlay */
 .hero-overlay {
@@ -298,6 +302,7 @@ footer {
     margin-bottom: 12px;
   }
 }
+
 
 
 
