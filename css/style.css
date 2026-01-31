@@ -315,7 +315,11 @@ footer {
 .contact-container {
   max-width: 720px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* 👈 spacing between WhatsApp & Email */
 }
+
 
 .contact-intro {
   color: var(--muted);
@@ -381,5 +385,6 @@ footer {
     letter-spacing: 0.18em;
   }
 }
+
 
 
