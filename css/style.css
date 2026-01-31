@@ -93,7 +93,19 @@ nav a:hover {
 /* HERO STACKING CONTEXT */
 .hero-video {
   position: relative;
-  z-index: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+
+  /* 🔑 Space-color base */
+  background:
+    radial-gradient(
+      circle at 70% 50%,
+      #0b2a4a 0%,
+      #071b2e 45%,
+      #020b14 100%
+    );
 }
 
 /* Earth video */
@@ -102,27 +114,32 @@ nav a:hover {
   inset: 0;
   width: 100%;
   height: 100%;
+
   object-fit: contain;
   object-position: center center;
 
-  z-index: 0; /* 🔑 FIX */
-  background: #0b1c2d;
-  filter: brightness(0.85) contrast(1.05) saturate(1.1);
+  z-index: 0;
+
+  /* 🔑 Slight glow + blend */
+  filter: brightness(0.9) contrast(1.05) saturate(1.1)
+          drop-shadow(0 0 80px rgba(30,120,255,0.25));
 }
+
 
 /* Overlay */
 .hero-overlay {
   position: absolute;
   inset: 0;
-  z-index: 1; /* 🔑 FIX */
+  z-index: 1;
   background:
-    radial-gradient(circle at 65% 50%, rgba(0,194,199,0.08), transparent 65%),
+    radial-gradient(circle at 65% 50%, rgba(0,194,199,0.06), transparent 65%),
     linear-gradient(
-      to bottom,
+      to right,
       rgba(11,28,45,0.35),
-      rgba(11,28,45,0.65)
+      rgba(11,28,45,0.75)
     );
 }
+
 
 /* Content */
 .hero-content {
@@ -281,5 +298,6 @@ footer {
     margin-bottom: 12px;
   }
 }
+
 
 
