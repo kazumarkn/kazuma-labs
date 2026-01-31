@@ -2,7 +2,7 @@
    GLOBAL RESET & VARIABLES
    ========================= */
 :root {
-  --primary: #030E19; /* space black */
+  --primary: #030E19;
   --accent: #00c2c7;
   --light: #f8fafc;
   --muted: #94a3b8;
@@ -65,8 +65,12 @@ nav a:hover {
 }
 
 /* =========================
-   HERO (VIDEO – SEAMLESS)
+   HERO (VIDEO)
    ========================= */
+.hero {
+  padding: 0;
+}
+
 .hero-video {
   position: relative;
   min-height: 100vh;
@@ -74,6 +78,7 @@ nav a:hover {
   align-items: center;
   overflow: hidden;
   background-color: var(--primary);
+  isolation: isolate;
 }
 
 /* Background video */
@@ -88,39 +93,56 @@ nav a:hover {
   filter: brightness(0.95) contrast(1.05) saturate(1.1);
 }
 
-/* Edge feather to remove rectangle */
-.hero-video::after {
+/* LEFT-SIDE BLEND */
+.hero-video::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  background:
-    radial-gradient(
-      ellipse at center,
-      rgba(3,14,25,0) 55%,
-      rgba(3,14,25,0.5) 75%,
-      rgba(3,14,25,1) 100%
-    );
+  background: linear-gradient(
+    to right,
+    #030E19 0%,
+    rgba(3,14,25,0.95) 10%,
+    rgba(3,14,25,0.75) 20%,
+    rgba(3,14,25,0.4) 35%,
+    rgba(3,14,25,0.15) 45%,
+    rgba(3,14,25,0) 55%
+  );
 }
 
-/* Dark readability overlay */
-.hero-overlay {
+/* GLOBAL FEATHER */
+.hero-video::after {
+  content: "";
   position: absolute;
   inset: 0;
   z-index: 2;
-  background:
-    linear-gradient(
-      to right,
-      rgba(3,14,25,0.35),
-      rgba(3,14,25,0.85)
-    );
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(3,14,25,0) 50%,
+    rgba(3,14,25,0.35) 70%,
+    rgba(3,14,25,0.85) 90%,
+    rgba(3,14,25,1) 100%
+  );
 }
 
-/* Hero content */
+/* TEXT OVERLAY */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: linear-gradient(
+    to right,
+    rgba(3,14,25,0.25),
+    rgba(3,14,25,0.85)
+  );
+}
+
+/* HERO CONTENT */
 .hero-content {
   position: relative;
-  z-index: 3;
+  z-index: 4;
   max-width: 720px;
   padding-left: 64px;
 }
@@ -137,60 +159,8 @@ nav a:hover {
 }
 
 /* =========================
-   HERO VISUAL STOP (CRITICAL FIX)
+   BUTTONS
    ========================= */
-.hero-video {
-  isolation: isolate;   /* 🔑 prevents bleeding */
-}
-
-/* Hard bottom fade to page background */
-.hero-video::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 160px;
-  z-index: 3;
-  pointer-events: none;
-
-  background: linear-gradient(
-    to bottom,
-    rgba(3,14,25,0),
-    rgba(3,14,25,1)
-  );
-}
-
-
-/* =========================
-   LEFT-SIDE VIDEO BLEND FIX
-   ========================= */
-.hero-video::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-
-  background:
-    /* LEFT feather (matches video black) */
-    linear-gradient(
-      to right,
-      #030E19 0%,
-      rgba(3,14,25,0.85) 12%,
-      rgba(3,14,25,0.45) 22%,
-      rgba(3,14,25,0.15) 35%,
-      rgba(3,14,25,0.0) 50%
-    ),
-    /* bottom fade stays intact */
-    linear-gradient(
-      to bottom,
-      rgba(3,14,25,0),
-      rgba(3,14,25,1)
-    );
-}
-
-/* Buttons */
 .btn {
   display: inline-block;
   padding: 14px 28px;
@@ -209,11 +179,11 @@ nav a:hover {
 }
 
 /* =========================
-   SECTIONS (RESET FLOW)
+   SECTIONS
    ========================= */
 section {
   position: relative;
-  background-color: #030E19; /* FORCE SOLID */
+  background-color: var(--primary);
   padding: 80px 64px;
   z-index: 5;
 }
@@ -276,13 +246,9 @@ footer {
     padding: 24px;
     flex-direction: column;
   }
-   
-.hero-content {
-  padding-top: 120px; /* accounts for absolute header */
-}
 
   .hero-content {
-    padding: 24px;
+    padding: 120px 24px 24px;
   }
 
   .hero h2 {
@@ -293,5 +259,3 @@ footer {
     padding: 64px 24px;
   }
 }
-
-
